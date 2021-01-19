@@ -1,0 +1,7 @@
+.facesContainer {
+  text-align: center;
+}
+
+.facesContainer > img {
+  margin: 20px;
+}
