@@ -1,7 +1,7 @@
 import React from "react";
 import "./letters.css";
 
-const Letters = (props) => {
+const Letters = ({ onButtonClick, word, quessed }) => {
   const letters = [
     "A",
     "Ą",
@@ -37,10 +37,21 @@ const Letters = (props) => {
     "Ż",
   ];
 
-  const handleOnClick = (event) => {
-    props.onButtonClick(event.target.value);
-    // event.preventDefault();
+  // const guess = (letter) => {
+  //   if (!word.toUpperCase().includes(letter)) {
+  //     console.log("błąd");
+  //     return false;
+  //   }
+  //   quessed.push(letter);
+
+  //   console.log(quessed);
+  // };
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    onButtonClick(e.target.value);
   };
+
   return (
     <div className="keyboard">
       {letters.map((letter, index) => {
