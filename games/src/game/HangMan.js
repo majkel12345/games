@@ -1,4 +1,3 @@
-import { queryByTestId } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import Faces from "./Faces";
 import Letters from "./Letters";
@@ -31,61 +30,27 @@ const HangMan = () => {
     },
   ];
 
-  const [guessed, setGuest] = useState([]);
-  const letters = [
-    "A",
-    "Ą",
-    "B",
-    "C",
-    "Ć",
-    "D",
-    "E",
-    "Ę",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "Ł",
-    "M",
-    "N",
-    "Ń",
-    "O",
-    "Ó",
-    "P",
-    "R",
-    "S",
-    "Ś",
-    "T",
-    "U",
-    "W",
-    "Y",
-    "Z",
-    "Ź",
-    "Ż",
-  ];
-
-  const [letter, setLetter] = useState("");
-  const [word, setWord] = useState("");
-  const [category, setCategory] = useState();
-
+  const finalStep = 7;
   const random = quotes[Math.floor(Math.random() * quotes.length)];
 
-  useEffect(() => {
+  const [guessed, setGuessed] = useState([]);
+  const [word, setWord] = useState("");
+  const [category, setCategory] = useState();
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const randomTextCategory = () => {
     setWord(random.text);
     setCategory(random.category);
-  }, []);
+  };
 
-  // useEffect(() => {
-  //   getContent();
-  // }, []);
+  useEffect(() => {
+    randomTextCategory();
+  }, []);
 
   const getContent = () => {
     let content = "";
     for (const char of word) {
-      if (char == " " || guessed.includes(char.toLocaleUpperCase())) {
+      if (char === " " || guessed.includes(char.toLocaleUpperCase())) {
         content += char;
       } else {
         content += "_";
@@ -96,34 +61,40 @@ const HangMan = () => {
 
   const guess = (value) => {
     if (word.toUpperCase().includes(value)) {
-      setGuest([...guessed, value]);
-      return true;
+      setGuessed([...guessed, value]);
     } else {
-      return false;
+      setCurrentStep(currentStep + 1);
     }
   };
 
-  const handleOnClick = (e) => {
-    console.log(e.target.value);
-    e.target.disabled = true;
-    setLetter(e.target.value);
-    guess(e.target.value);
+  const handleOnClick = (value) => {
+    console.log(value);
+
+    guess(value);
   };
+
+  console.log(currentStep);
   console.log(guessed);
 
+  const content = getContent();
+
   return (
-    <div>
-      <Faces />
-      <h1 style={{ letterSpacing: "20px" }}>{getContent()}</h1>
-      <p>{category}</p>
-      <div className="keyboard">
-        {letters.map((letter, index) => {
-          return (
-            <button key={index + 1} value={letter} onClick={handleOnClick}>
-              {letter}
-            </button>
-          );
-        })}
+    <div className="gameContainer">
+      <Faces currentStep={currentStep} />
+      <div style={{ letterSpacing: "20px" }}>
+        {currentStep === finalStep ? (
+          <p>Niestety przegrałeś. Hasło to {word}</p>
+        ) : !content.includes("_") ? (
+          <p>
+            Wygrałeś!! <br></br> hasło to: {word}
+          </p>
+        ) : (
+          <>
+            <h1>{content}</h1>
+            <p>{category}</p>
+            <Letters onButtonClick={handleOnClick} />
+          </>
+        )}
       </div>
     </div>
   );

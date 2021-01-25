@@ -1,7 +1,7 @@
 import React from "react";
 import "./letters.css";
 
-const Letters = ({ onButtonClick, word, quessed }) => {
+const Letters = ({ onButtonClick }) => {
   const letters = [
     "A",
     "Ą",
@@ -37,19 +37,10 @@ const Letters = ({ onButtonClick, word, quessed }) => {
     "Ż",
   ];
 
-  // const guess = (letter) => {
-  //   if (!word.toUpperCase().includes(letter)) {
-  //     console.log("błąd");
-  //     return false;
-  //   }
-  //   quessed.push(letter);
-
-  //   console.log(quessed);
-  // };
-
   const handleOnClick = (e) => {
     e.preventDefault();
     onButtonClick(e.target.value);
+    e.target.disabled = true;
   };
 
   return (

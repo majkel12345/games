@@ -9,65 +9,49 @@ import logo6 from "../buzki/6.png";
 import logo7 from "../buzki/7.png";
 import logo8 from "../buzki/8.png";
 
-const Faces = () => {
+const Faces = ({ currentStep }) => {
+  const images = [
+    {
+      src: logo1,
+      class: "one",
+    },
+    {
+      src: logo2,
+      class: "two",
+    },
+    {
+      src: logo3,
+      class: "three",
+    },
+    {
+      src: logo4,
+      class: "four",
+    },
+    {
+      src: logo5,
+      class: "five",
+    },
+    {
+      src: logo6,
+      class: "six",
+    },
+    {
+      src: logo7,
+      class: "seven",
+    },
+    {
+      src: logo8,
+      class: "eight",
+    },
+  ];
+
   return (
     <div className="facesContainer">
       <img
-        style={{ color: "red" }}
-        src={logo1}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo2}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo3}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo4}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo5}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo6}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo7}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
-      <img
-        style={{ color: "red" }}
-        src={logo8}
-        height="100"
-        width="100"
-        alt="buzka"
-      />
+        className={images[currentStep].class}
+        src={images[currentStep].src}
+        alt="bużka"
+      ></img>
     </div>
   );
 };
