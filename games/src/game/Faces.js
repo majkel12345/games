@@ -48,6 +48,7 @@ const Faces = ({ currentStep }) => {
   return (
     <div className="facesContainer">
       <img
+        height="300"
         className={images[currentStep].class}
         src={images[currentStep].src}
         alt="bużka"

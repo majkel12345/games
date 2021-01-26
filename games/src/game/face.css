@@ -1,7 +1,38 @@
-.facesContainer {
-  text-align: center;
+.facesContainer > img {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: white;
 }
 
-.facesContainer > img {
-  margin: 20px;
+.one {
+  border: 16px solid green;
+  border-radius: 30px;
+}
+.two {
+  border: 16px solid rgb(4, 175, 4);
+  border-radius: 30px;
+}
+.three {
+  border: 16px solid rgb(135, 247, 7);
+  border-radius: 30px;
+}
+.four {
+  border: 16px solid rgba(207, 241, 11, 0.973);
+  border-radius: 30px;
+}
+.five {
+  border: 16px solid rgb(191, 211, 11);
+  border-radius: 30px;
+}
+.six {
+  border: 16px solid rgba(250, 135, 4, 0.788);
+  border-radius: 30px;
+}
+.seven {
+  border: 16px solid rgba(255, 31, 2, 0.664);
+  border-radius: 30px;
+}
+.eight {
+  border: 16px solid rgb(128, 17, 2);
+  border-radius: 30px;
 }

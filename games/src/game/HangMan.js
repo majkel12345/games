@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Faces from "./Faces";
 import Letters from "./Letters";
+import "./hangMan.css";
 
 const HangMan = () => {
   const quotes = [
@@ -81,21 +82,22 @@ const HangMan = () => {
   return (
     <div className="gameContainer">
       <Faces currentStep={currentStep} />
-      <div style={{ letterSpacing: "20px" }}>
-        {currentStep === finalStep ? (
-          <p>Niestety przegrałeś. Hasło to {word}</p>
-        ) : !content.includes("_") ? (
-          <p>
-            Wygrałeś!! <br></br> hasło to: {word}
-          </p>
-        ) : (
-          <>
-            <h1>{content}</h1>
-            <p>{category}</p>
-            <Letters onButtonClick={handleOnClick} />
-          </>
-        )}
-      </div>
+
+      {currentStep === finalStep ? (
+        <h2>
+          Niestety przegrałeś. <br></br>Hasło to <u>{word}</u>
+        </h2>
+      ) : !content.includes("_") ? (
+        <h2>
+          Wygrałeś!! <br></br> hasło to: <u>{word}</u>
+        </h2>
+      ) : (
+        <>
+          <h2>{content}</h2>
+          <h3>{category}</h3>
+          <Letters onButtonClick={handleOnClick} />
+        </>
+      )}
     </div>
   );
 };
