@@ -74,7 +74,7 @@ const HangMan = () => {
     guess(value);
   };
 
-  console.log(currentStep);
+  console.log(word);
   console.log(guessed);
 
   const content = getContent();
