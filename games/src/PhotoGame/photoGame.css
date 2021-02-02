@@ -1,0 +1,36 @@
+.photoGameContainer {
+  text-align: center;
+}
+
+h2 {
+  margin: 20px;
+  font-size: 30px;
+}
+
+.inputContainer {
+  text-align: center;
+  margin: 20px;
+}
+
+.inptuText {
+  width: 500px;
+  height: 70px;
+  font-size: 25px;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  text-align: center;
+  outline: none;
+  background-color: #f4f4f4;
+}
+
+.inptutSub {
+  width: 100px;
+  height: 70px;
+  font-size: 25px;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  text-align: center;
+  outline: none;
+  background-color: orange;
+  color: #f4f4f4;
+}

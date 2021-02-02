@@ -8,6 +8,7 @@ import logo5 from "../buzki/5.png";
 import logo6 from "../buzki/6.png";
 import logo7 from "../buzki/7.png";
 import logo8 from "../buzki/8.png";
+import "./photoGame.css";
 
 const PhotoGame = () => {
   const images = [
@@ -37,31 +38,34 @@ const PhotoGame = () => {
   };
 
   const handleOnSubmit = (e) => {
-    setValue("");
     e.preventDefault();
     if (value === animal) {
       console.log("brawo");
-
       setWin(true);
     } else {
-      console.log("nie udało się");
+      setValue("");
     }
   };
 
-  console.log(photoImg);
-
   return (
-    <div>
-      <h1>Photo Game</h1>
+    <div className="photoGameContainer">
       <Images win={win} images={photoImg} />
-      <h1>{animal}</h1>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          placeholder="write here!"
-          onChange={handleOnChange}
-          value={value}
-        ></input>
-      </form>
+      {win ? (
+        <h2>Brawo!!! wygrałeś, hasło to => {animal}</h2>
+      ) : (
+        <div className="inputContainer">
+          <form onSubmit={handleOnSubmit}>
+            <input
+              className="inptuText"
+              type="text"
+              placeholder="write here!"
+              onChange={handleOnChange}
+              value={value}
+            ></input>
+            <input type="submit" value="check" className="inptutSub"></input>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
