@@ -1,35 +1,13 @@
 import React, { useState } from "react";
 import Images from "./Images";
-import logo1 from "../buzki/1.png";
-import logo2 from "../buzki/2.png";
-import logo3 from "../buzki/3.png";
-import logo4 from "../buzki/4.png";
-import logo5 from "../buzki/5.png";
-import logo6 from "../buzki/6.png";
-import logo7 from "../buzki/7.png";
-import logo8 from "../buzki/8.png";
+import { photos } from "./photos";
 import "./photoGame.css";
 
 const PhotoGame = () => {
-  const images = [
-    {
-      photos: [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8],
-      description: "dog",
-    },
-    {
-      photos: [logo8, logo2, logo3, logo4, logo5, logo6, logo7, logo1],
-      description: "cat",
-    },
-    {
-      photos: [logo2, logo1, logo3, logo4, logo5, logo6, logo7, logo8],
-      description: "horse",
-    },
-  ];
-
-  const random = images[Math.floor(Math.random() * images.length)];
+  const random = photos[Math.floor(Math.random() * photos.length)];
   const [value, setValue] = useState("");
   const [animal, setAnimal] = useState(random.description);
-  const [photoImg, setPhotoImg] = useState(random.photos);
+  const [photoImg, setPhotoImg] = useState(random.photo);
   const [win, setWin] = useState(false);
 
   const handleOnChange = (e) => {
