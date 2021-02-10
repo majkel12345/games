@@ -1,9 +1,10 @@
 import "./App.css";
-
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HangMan from "./game/HangMan";
 import Nav from "./Nav";
 import PhotoGame from "./PhotoGame/PhotoGame";
+import Login from "./Login/Login";
 
 function App() {
   return (
@@ -18,6 +19,12 @@ function App() {
           </Route>
           <Route path="/photo">
             <PhotoGame />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Login notSingUp />
           </Route>
         </Switch>
       </Router>
