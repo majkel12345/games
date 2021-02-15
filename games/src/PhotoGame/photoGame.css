@@ -34,3 +34,27 @@ h2 {
   background-color: orange;
   color: #f4f4f4;
 }
+
+.btn {
+  width: 500px;
+  height: 70px;
+  font-size: 25px;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  outline: none;
+  background-color: orange;
+  color: #f4f4f4;
+}
+
+.finishedGame {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+/* 
+.scoreBtn {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+} */

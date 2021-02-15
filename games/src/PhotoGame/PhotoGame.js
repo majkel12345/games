@@ -4,12 +4,14 @@ import { photos } from "./photos";
 import "./photoGame.css";
 
 const PhotoGame = () => {
-  // const random = photos[Math.floor(Math.random() * photos.length)];
   const [value, setValue] = useState("");
   const [index, setIndex] = useState(0);
-  const [animal, setAnimal] = useState(photos[index].description);
-  const [photoImg, setPhotoImg] = useState(photos[index].photo);
+  const [animal, setAnimal] = useState();
+  const [photoImg, setPhotoImg] = useState();
   const [win, setWin] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [fetchData, setFetchData] = useState([]);
+  const [end, setEnd] = useState(false);
 
   const handleOnChange = (e) => {
     e.preventDefault();
@@ -17,8 +19,19 @@ const PhotoGame = () => {
   };
 
   useEffect(() => {
-    setAnimal(photos[index].description);
-    setPhotoImg(photos[index].photo);
+    fetch(
+      `https://games-f47ae-default-rtdb.europe-west1.firebasedatabase.app/photoGame/${index}.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setFetchData([...fetchData, data]);
+        setAnimal(data.description);
+        setPhotoImg(data.photo);
+        setMounted(true);
+      })
+      .catch(() => {
+        setEnd(true);
+      });
   }, [index]);
 
   const handleOnSubmit = (e) => {
@@ -34,32 +47,42 @@ const PhotoGame = () => {
     setIndex(index + 1);
     setWin(false);
   };
+  console.log(fetchData);
 
   return (
     <div className="photoGameContainer">
-      <Images win={win} images={photoImg} />
-      {win ? (
-        <h2>Brawo!!! wygrałeś, hasło to {animal}</h2>
+      {!end ? (
+        <>
+          {mounted ? <Images win={win} images={photoImg} /> : <p>loading</p>}
+          {win ? (
+            <h2>Brawo!!! wygrałeś, hasło to {animal}</h2>
+          ) : (
+            <div className="inputContainer">
+              <form onSubmit={handleOnSubmit}>
+                <input
+                  className="inptuText"
+                  type="text"
+                  placeholder="write here!"
+                  onChange={handleOnChange}
+                  value={value}
+                ></input>
+                <input
+                  type="submit"
+                  value="check"
+                  className="inptutSub"
+                ></input>
+              </form>
+            </div>
+          )}
+          <button className="btn" onClick={handleOnNext}>
+            Next
+          </button>
+        </>
       ) : (
-        <div className="inputContainer">
-          <form onSubmit={handleOnSubmit}>
-            <input
-              className="inptuText"
-              type="text"
-              placeholder="write here!"
-              onChange={handleOnChange}
-              value={value}
-            ></input>
-            <input type="submit" value="check" className="inptutSub"></input>
-          </form>
+        <div className="finishedGame">
+          <button className="btn">Sprwdź swój wynik</button>
         </div>
       )}
-      {index === photos.length - 1 && win ? (
-        <button>Sprawdź wynik</button>
-      ) : null}
-      {index !== photos.length - 1 ? (
-        <button onClick={handleOnNext}>Next</button>
-      ) : null}
     </div>
   );
 };
